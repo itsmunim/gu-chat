@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let contactSchema = new Schema({
-  userId: Schema.Types.ObjectId,
+  userId: {type: Schema.Types.ObjectId, unique: true},
   avatarUrl: {type: String},
   firstName: {type: String},
   lastName: {type: String}
