@@ -1,0 +1,23 @@
+{
+  "name": "gu-chat-server",
+  "version": "0.0.1",
+  "repository": "https://github.com/dibosh/gu-chat",
+  "author": "Munim Dibosh",
+  "license": "MIT",
+  "scripts": {
+    "build": "./build.sh",
+    "start": "yarn run build && node dist/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "rimraf": "^2.6.2"
+  }
+}
