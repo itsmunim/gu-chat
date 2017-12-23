@@ -1,0 +1,5 @@
+.idea/
+client/.tmp
+client/dist
+server/node_modules
+server/dist
