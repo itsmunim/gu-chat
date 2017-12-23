@@ -71,6 +71,16 @@ utils.handleErrorIfAny = (err, expectedDBRecord, promiseRejectHandler) => {
   }
 };
 
+utils.isRequestValid = (req, method, valueKeys) => {
+  let space = method.toLowerCase() === 'post' ? req.body : req.query;
+  valueKeys.forEach((key) => {
+    if (_.isUndefined(space[key])) {
+      return false;
+    }
+  });
+  return true;
+};
+
 utils.handleHttpRequestPromise = (httpPromise, res) => {
   httpPromise
     .then((response) => {
