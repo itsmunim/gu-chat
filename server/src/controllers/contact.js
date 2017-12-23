@@ -33,13 +33,13 @@ controller.getContactById = (id) => {
   });
 };
 
-controller.updateContact = (toBeUpdatedContact) => {
+controller.updateContact = (userId, updates) => {
   return new Promise((resolve, reject) => {
-    Contact.findOne({userId: toBeUpdatedContact.userId}, (err, contact) => {
+    Contact.findOne({userId: userId}, (err, contact) => {
       utils.handleErrorIfAny(err, contact, reject);
-      contact.firstName = toBeUpdatedContact.firstName;
-      contact.lastName = toBeUpdatedContact.lastName;
-      contact.avatarUrl = toBeUpdatedContact.avatarUrl;
+      contact.firstName = updates.firstName || contact.firstName;
+      contact.lastName = updates.lastName || contact.lastName;
+      contact.avatarUrl = updates.avatarUrl || contact.avatarUrl;
       saveContact(contact, resolve, reject);
     });
   });
