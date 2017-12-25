@@ -93,7 +93,7 @@ utils.handleHttpRequestPromise = (httpPromise, res) => {
 };
 
 utils.isValidEmail = (email) => {
-  return Boolean(email.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/));
+  return Boolean(email.match(/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/));
 };
 
 module.exports = utils;
