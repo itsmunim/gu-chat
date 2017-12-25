@@ -7,7 +7,7 @@ var utils = {};
 
 utils.initializeDB = () => {
   if (_.isUndefined(utils.db)) {
-    var dbURI = 'mongodb://' + config.MONGO_HOST + ':27017/' + config.MONGO_DB;
+    var dbURI = 'mongodb://' + config.MONGO_HOST + ':'+ config.MONGO_PORT +'/' + config.MONGO_DB;
     utils.db = mongoose.connect(dbURI, { useMongoClient: true });
 
     mongoose.connection.on('connected', () => {
