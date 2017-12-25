@@ -9,7 +9,11 @@ let ContactController = require('../controllers/contact');
 
 router.post('/register', function (req, res) {
   if (!utils.isRequestValid(req, 'POST', ['email', 'password', 'firstName', 'lastName'])) {
-    res.status(400);
+    return res.status(400);
+  }
+
+  if (!utils.isValidEmail(req.body.email)) {
+    return res.status(400);
   }
 
   UserController.createUser(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
