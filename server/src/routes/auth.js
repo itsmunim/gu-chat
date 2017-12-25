@@ -5,6 +5,7 @@ let utils = require('../common/utils');
 let config = require('../common/config');
 let bcrypt = require('bcrypt');
 let UserController = require('../controllers/user');
+let ContactController = require('../controllers/contact');
 
 router.post('/register', function (req, res) {
   if (!utils.isRequestValid(req, 'POST', ['email', 'password', 'firstName', 'lastName'])) {
@@ -13,7 +14,14 @@ router.post('/register', function (req, res) {
 
   UserController.createUser(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
     .then((user) => {
-      return respondTokenForUser(user, res);
+      // create a respective controller representing this user
+      ContactController.createContact(user.id, user.firstName, user.lastName)
+        .then(() => {
+          return respondTokenForUser(user, res);
+        })
+        .catch((err) => {
+          return res.status(500).send(err);
+        });
     })
     .catch((err) => {
       return res.status(500).send(err);
