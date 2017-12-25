@@ -9,11 +9,11 @@ let ContactController = require('../controllers/contact');
 
 router.post('/register', function (req, res) {
   if (!utils.isRequestValid(req, 'POST', ['email', 'password', 'firstName', 'lastName'])) {
-    return res.status(400);
+    return res.status(400).send({message: 'Must be provided fields: email, password, firstName, lastName.'});
   }
 
   if (!utils.isValidEmail(req.body.email)) {
-    return res.status(400);
+    return res.status(400).send({message: 'Not a valid email.'});
   }
 
   UserController.createUser(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
@@ -28,6 +28,9 @@ router.post('/register', function (req, res) {
         });
     })
     .catch((err) => {
+      if (err.code === 11000) {
+        return res.status(403).send({message: 'You are already registered, try logging in.'});
+      }
       return res.status(500).send(err);
     });
 });
