@@ -4,6 +4,7 @@ let Schema = mongoose.Schema;
 let contactSchema = new Schema({
   userId: {type: Schema.Types.ObjectId, unique: true},
   avatarUrl: {type: String},
+  email: {type: String},
   firstName: {type: String},
   lastName: {type: String}
 }, {

@@ -5,12 +5,13 @@ let Contact = require('../models/contact'),
 
 let controller = {};
 
-controller.createContact = (userId, firstName, lastName) => {
+controller.createContact = (userId, firstName, lastName, email) => {
   return new Promise((resolve, reject) => {
     let contact = new Contact();
     contact.userId = userId;
     contact.firstName = firstName;
     contact.lastName = lastName;
+    contact.email = email;
     saveContact(contact, resolve, reject);
   });
 };

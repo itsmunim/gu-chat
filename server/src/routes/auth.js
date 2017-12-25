@@ -15,7 +15,7 @@ router.post('/register', function (req, res) {
   UserController.createUser(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
     .then((user) => {
       // create a respective controller representing this user
-      ContactController.createContact(user.id, user.firstName, user.lastName)
+      ContactController.createContact(user.id, user.firstName, user.lastName, user.email)
         .then(() => {
           return respondTokenForUser(user, res);
         })
