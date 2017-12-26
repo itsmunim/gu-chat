@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "babel ./src --source-maps-inline --out-dir ./dist",
-    "watch": "babel ./src --watch --source-map-inline --out-dir ./dist && nodemon --watch ./src ./dist/index.js",
-    "run": "yarn run build && node ./dist/index.js"
+    "watch": "concurrently \"babel ./src --watch --source-map-inline --out-dir ./dist\" \"nodemon --watch ./src ./dist/index.js\"",
+    "serve": "yarn run build && node ./dist/index.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
@@ -24,6 +24,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
+    "concurrently": "^3.5.1",
     "nodemon": "^1.14.3",
     "rimraf": "^2.6.2"
   }
