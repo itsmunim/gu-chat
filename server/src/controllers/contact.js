@@ -34,6 +34,15 @@ controller.getContactById = (id) => {
   });
 };
 
+controller.getContactByEmail = (email) => {
+  return new Promise((resolve, reject) => {
+    Contact.findOne({email: email}, (err, contact) => {
+      utils.handleErrorIfAny(err, contact, reject);
+      resolve(contact);
+    });
+  });
+};
+
 controller.updateContact = (userId, updates) => {
   return new Promise((resolve, reject) => {
     Contact.findOne({userId: userId}, (err, contact) => {
